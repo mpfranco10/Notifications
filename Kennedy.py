@@ -18,7 +18,6 @@ for message in consumer:
                                           message.offset, message.key,
                                           message.value))
     content.append(message.value)
-    print(content[0])
 
 
 
