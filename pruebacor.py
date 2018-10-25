@@ -7,12 +7,13 @@ server.starttls()
 server.login("pruebaarquisoft1@gmail.com", "prueba123")
  
 
-msg = "moshi moshi hi hello!"
-server.sendmail("pruebaarquisoft1@gmail.com", "pruebaarquisoft1@hotmail.com", msg)
-server.quit()
-
-
 while True:
-    print("el elemento sacado ")
-    print(content[0])
-    content.remove(content[0]);
+    print("Enviando correo")
+    
+    if content[0] is not None:
+        msg = "moshi moshi hi hello!"
+        server.sendmail("pruebaarquisoft1@gmail.com", "pruebaarquisoft1@gmail.com", msg)
+        content.remove(content[0]);
+    
+
+server.quit()
