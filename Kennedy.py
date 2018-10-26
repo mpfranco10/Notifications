@@ -13,7 +13,7 @@ consumer.subscribe(pattern='.*.-Kennedy-.*.*')
 producer = KafkaProducer(bootstrap_servers=['172.24.41.165:8081'], 
              value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
-server = smtplib.SMTP('smtp.gmail.com', 587)
+server = smtplib.SMTP("pruebaarquisoft1@gmail.com", 587)
 server.starttls()
 server.ehlo() # To start the connection
 server.login("pruebaarquisoft1@gmail.com", "prueba123")
@@ -37,7 +37,7 @@ for message in consumer:
         msg['Subject'] = 'Se realizo una reserva en su parqueadero de %s' % "Nidoo"
         msg.attach(MIMEText(mensaje))
         server.sendmail("pruebaarquisoft1@gmail.com", correo , msg.as_string())
-        print(msg.as_string)
+        print(correo)
         
         
     except:
