@@ -1,0 +1,9 @@
+Para el ASR que implica enviar notificaciones se realizaron los siguientes cambios:
+Se actualizó el modelo de componentes de manera que el servidor Kafka esté mejor representado, se le asginaron colores para observar los cambios en cada componente.
+Se cambió la estructura de los tópicos de Localidad-barrio-calle-demandante a Demandante-localidad-barrio-calle. De esta manera, un 
+demanante puede acceder a sus parqueaderos con un menor número de suscripciones, y puede acceder a cada uno de sus parqueaderos (si tiene 
+más de uno). De esta manera se tiene más en cuenta los temas críticos del negocio dándole prioridad a los demandantes.
+Se crearon 3 consumidores, uno por cada localidad. En el caso completo, tendrían que tenerse 20 consumidores uno por cada localidad. De esta manera cada uno se encarga de consumir y redirigir los correos y no se carga un solo consumidor.
+Ahora se recogen los datos de cada notificación, se estructuran en un mensaje y este mensaje se envía al correo que el demandante especifique para recibir sus notificaciones. 
+Se realizaron pruebas de carga nuevamente y se sigue cumpliendo con la métrica establecida (<1min). 
+En el repositorio https://github.com/mpfranco10/Notifications se puede encontrar el código fuente, las pruebas de carga y las imagenes de los correos recibidos.

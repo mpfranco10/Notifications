@@ -54,5 +54,5 @@ while True:
     producer.send('IvanDuque-Usaquen-Unicerro-calle92', {'correoDemandante':'ivanduquedeusaquen@gmail.com','fechaReserva': datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 'demandante': 'individual', 'fechaInicio': randomDate("27/9/2018 12:01 AM", "30/9/2018 11:59 PM", random.random()),'fechaFin': randomDate("2/10/2018 12:01 AM", "5/10/2018 11:59 PM", random.random()),  'horaLlegada': str(int(round(uniform(0, 12),0))) + ":" + str(int(round(uniform(0, 59),0))), 'horaSalida': str(int(round(uniform(13, 23),0))) + ":" + str(int(round(uniform(0, 59),0))),'lugar': 'Usaquen-Unicerro', 'valorAPagar':round(uniform(7000, 50000),0)})
     
     producer.flush()
-    time.sleep(10)
+    time.sleep(25)
     

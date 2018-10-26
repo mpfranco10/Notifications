@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 
 consumer = KafkaConsumer(bootstrap_servers=['172.24.41.165:8081'],
                          value_deserializer=lambda m: json.loads(m.decode('utf-8')))
-consumer.subscribe(pattern='.*.-Usaquen-.*.*')
+consumer.subscribe(pattern='.*.-Suba-.*.*')
 
 producer = KafkaProducer(bootstrap_servers=['172.24.41.165:8081'], 
              value_serializer=lambda v: json.dumps(v).encode('utf-8'))
