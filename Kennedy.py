@@ -30,12 +30,14 @@ for message in consumer:
         val = message.value["valorAPagar"]
         pago = message.value["valorAPagar"]
         mensaje = 'Se realizo una reserva en su parqueadero de ' + place + ' por COP ' + str(pago) +  '. Fecha de reserva: ' + fechares + ', fecha de inicio reserva: ' + fechain  + ', fecha fin reserva: ' + fechafin + '. Hora llegada carro: ' + horlle + ', hora salida carro: ' + horsal 
+        print(mensaje)
         msg = MIMEMultipart()
         msg['From'] = 'Nidoo Servicios <pruebaarquisoft1@gmail.com>' # Note the format
         msg['To'] = '%s <' + correo +'>'
-        msg['Subject'] = 'Se realizo una reserva en su parqueadero de %s' % place
+        msg['Subject'] = 'Se realizo una reserva en su parqueadero de %s' % "Nidoo"
         msg.attach(MIMEText(mensaje))
         server.sendmail("pruebaarquisoft1@gmail.com", correo , msg.as_string())
+        print(msg.as_string)
         
         
     except:
