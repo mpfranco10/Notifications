@@ -13,6 +13,11 @@ consumer.subscribe(pattern='.*.-Kennedy-.*.*')
 producer = KafkaProducer(bootstrap_servers=['172.24.41.165:8081'], 
              value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.ehlo() # To start the connection
+server.login("pruebaarquisoft1@gmail.com", "prueba123")
+
 for message in consumer:
     try:
         correo = message.value["correoDemandante"]
@@ -23,11 +28,18 @@ for message in consumer:
         horsal = message.value["horaSalida"]
         place = message.value["lugar"]
         val = message.value["valorAPagar"]
-        print('holaaaaaa')
-        mensaje = 'here is the email' + 'Se realizo una reserva en su parqueadero de ' + place + '. Fecha de reserva: ' + fechares + ', fecha de inicio reserva: ' + fechain  + ', fecha fin reserva: ' + fechafin + '. Hora llegada carro: ' + horlle + ', hora salida carro: ' + horsal + '. Valor a pagar: ' + val
-        print(mensaje)
+        pago = message.value["valorAPagar"]
+        mensaje = 'Se realizo una reserva en su parqueadero de ' + place + ' por COP ' + str(pago) +  '. Fecha de reserva: ' + fechares + ', fecha de inicio reserva: ' + fechain  + ', fecha fin reserva: ' + fechafin + '. Hora llegada carro: ' + horlle + ', hora salida carro: ' + horsal 
+        msg = MIMEMultipart()
+        msg['From'] = 'Nidoo Servicios <pruebaarquisoft1@gmail.com>' # Note the format
+        msg['To'] = '%s <' + correo +'>'
+        msg['Subject'] = 'Se realizo una reserva en su parqueadero de %s' % place
+        msg.attach(MIMEText(mensaje))
+        server.sendmail("pruebaarquisoft1@gmail.com", correo , msg.as_string())
         
         
     except:
         pass
 
+
+server.quit()
