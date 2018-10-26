@@ -13,9 +13,9 @@ consumer.subscribe(pattern='.*.-Usaquen-.*.*')
 producer = KafkaProducer(bootstrap_servers=['172.24.41.165:8081'], 
              value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
-server = smtplib.SMTP("pruebaarquisoft1@gmail.com", 587)
+server = smtplib.SMTP()
+server.connect("pruebaarquisoft1@gmail.com", 587)
 server.starttls()
-server.ehlo() # To start the connection
 server.login("pruebaarquisoft1@gmail.com", "prueba123")
 
 for message in consumer:
