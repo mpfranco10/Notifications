@@ -24,8 +24,8 @@ for message in consumer:
         place = message.value["lugar"]
         val = message.value["valorAPagar"]
         print('holaaaaaa')
-        #mensaje = '%s here is the email' + 'Se realizo una reserva en su parqueadero de ' + place + '. Fecha de reserva: ' + fechares + ', fecha de inicio reserva: ' + fechain  + ', fecha fin reserva: ' + fechafin + '. Hora llegada carro: ' + horlle + ', hora salida carro: ' + horsal + '. Valor a pagar: ' + val
-        print(horlle)
+        mensaje = 'here is the email' + 'Se realizo una reserva en su parqueadero de ' + place + '. Fecha de reserva: ' + fechares + ', fecha de inicio reserva: ' + fechain  + ', fecha fin reserva: ' + fechafin + '. Hora llegada carro: ' + horlle + ', hora salida carro: ' + horsal + '. Valor a pagar: ' + val
+        print(mensaje)
         
         
     except:
